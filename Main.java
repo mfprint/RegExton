@@ -28,7 +28,7 @@ public class Main{
 	        reader.close();
 
 	    } catch (IOException e) {
-	        e.printStackTrace();
+	        e.printStackTrace(); 
 	    }
 
 	    System.out.println("Text: " + testStr);
