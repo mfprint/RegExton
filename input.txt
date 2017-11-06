@@ -1,4 +1,4 @@
-abaabb
+aabb
 S->lambda_
-S->aS
-S->bS
+S->Sa
+S->Sb

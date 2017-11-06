@@ -8,7 +8,7 @@ public class Main{
 
 	static List<Symbol> symbols = new ArrayList<Symbol>();
 	static String testStr = "";
-	static int count = 0;
+	static int count;
 	static boolean end = false;
 
 	public static void main(String[] args){
@@ -63,12 +63,13 @@ public class Main{
 	}
 
 	public static void start(String text){
+		count = 0;
 		for (Symbol symbol : symbols)
 		{
 			if( symbol.getSymbol().equals("S") ){
 				for (String rule : symbol.getRules())
 				{
-					System.out.println("Start count: " + count);
+					System.out.println("\nRULE: " + rule);
 					if(!end)
 						test(text, rule);
 				}
@@ -80,7 +81,7 @@ public class Main{
 	public static boolean test(String text, String comulated)
 	{
 		count++;
-		System.out.println('\n' + count + "_____________________\n" + comulated);
+		System.out.println("\n"+count+ "_____________________\n" + comulated);
 		String sub = comulated.replace("S","");
 		if( comulated.contains("lambda_")){
 			if( text.equals(sub) ){
@@ -109,7 +110,6 @@ public class Main{
 				}
 			}
 		}
-		System.out.println("MARTIN");
 		return end;
 	}
 
