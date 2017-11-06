@@ -8,7 +8,8 @@ public class Main{
 
 	static List<Symbol> symbols = new ArrayList<Symbol>();
 	static String testStr = "";
-	static int count = -10;
+	static int count = 0;
+	static boolean end = false;
 
 	public static void main(String[] args){
 
@@ -68,7 +69,8 @@ public class Main{
 				for (String rule : symbol.getRules())
 				{
 					System.out.println("Start count: " + count);
-					test(text, rule);
+					if(!end)
+						test(text, rule);
 				}
 				break;
 			}
@@ -83,15 +85,15 @@ public class Main{
 		if( comulated.contains("lambda_")){
 			if( text.equals(sub) ){
 				System.out.println("true");
-				return true;
+				end = true;
 			}else{
 				System.out.println("false");
-				return false; 
+				end = false;
 			}
-
 		}
 		if( text.equals(sub) ){
-			return true;
+			System.out.println("true");
+			end = true;
 		}else if( text.contains(sub) ){
 			for (Symbol symbol : symbols)
 			{
@@ -100,14 +102,15 @@ public class Main{
 					{
 						System.out.println("Original Comulated: "+ comulated + '\n');
 						System.out.print("Text: "+text+'\n'+"Comulated: "+ comulated.replace("S",rule) );
-						if(test( text, comulated.replace("S",rule) )) break;
-						//test( text, comulated.replace("S",rule) );
+						if(!end)
+							test( text, comulated.replace("S",rule) );
 					}
 					break;
 				}
 			}
 		}
-		return false;
+		System.out.println("MARTIN");
+		return end;
 	}
 
 	
