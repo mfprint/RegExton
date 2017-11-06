@@ -8,6 +8,7 @@ public class Main{
 
 	static List<Symbol> symbols = new ArrayList<Symbol>();
 	static String testStr = "";
+	static int count = -10;
 
 	public static void main(String[] args){
 
@@ -17,7 +18,7 @@ public class Main{
 	    	cl.print();
 	    }
 
-	    test(testStr, "");
+	    start(testStr);
 	    
 	}
 
@@ -60,60 +61,56 @@ public class Main{
 	    }
 	}
 
-	public static boolean test(String text, String comulated)
-	{
+	public static void start(String text){
 		for (Symbol symbol : symbols)
 		{
-			for (String rule : symbol.getRules())
-			{
-				test(text, comulated, rule);
+			if( symbol.getSymbol().equals("S") ){
+				for (String rule : symbol.getRules())
+				{
+					System.out.println("Start count: " + count);
+					test(text, rule);
+				}
+				break;
 			}
 		}
-
-		return true;
 	}
 
-	// wabaabb
-
-	// S->lambda
-	// S->Sa
-	// S->Sb
-
-	public static boolean test(String text, String comulated, String rule)
+	public static boolean test(String text, String comulated)
 	{
-		if(rule.equals("lambda")){
-			if(comulated == text){
+		count++;
+		System.out.println('\n' + count + "_____________________\n" + comulated);
+		String sub = comulated.replace("S","");
+		if( comulated.contains("lambda_")){
+			if( text.equals(sub) ){
+				System.out.println("true");
 				return true;
 			}else{
-				return false;
+				System.out.println("false");
+				return false; 
+			}
+
+		}
+		if( text.equals(sub) ){
+			return true;
+		}else if( text.contains(sub) ){
+			for (Symbol symbol : symbols)
+			{
+				if( symbol.getSymbol().equals("S") ){
+					for (String rule : symbol.getRules())
+					{
+						System.out.println("Original Comulated: "+ comulated + '\n');
+						System.out.print("Text: "+text+'\n'+"Comulated: "+ comulated.replace("S",rule) );
+						if(test( text, comulated.replace("S",rule) )) break;
+						//test( text, comulated.replace("S",rule) );
+					}
+					break;
+				}
 			}
 		}
-		//Caso recursivo
-		else
-		{
-			// comulated = rule + comulated;
-			// char[] symbols = capitalLetters(comulated);
-			// if (symbols.length > 0)
-			// {
-			// 	for (int i = 0; i < symbols.length; i++)
-			// 	{
-			// 		for (Symbol s : symbols)
-			// 		{
-			// 			if (s.getSymbol().equals(symbols[i]))
-			// 			{
-			// 				for (String r : symbol.getRules())
-			// 				{
-			// 					test(text, comulated, rule);
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// }
-		}
-
-		return true;
+		return false;
 	}
 
+	
 	public static char[] capitalLetters(String s){
 		String res = "";
 		char[] arr = s.toCharArray();

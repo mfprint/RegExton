@@ -12,7 +12,6 @@ public class Tree
 		return false;
 	}
 
-	//Pendiente
 	/*
 	Metodo recursivo:
 		text: texto al que tenemos que llegar

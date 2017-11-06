@@ -21,4 +21,56 @@ public class porsiacaso
 		}
 		return parts;
 	}
+
+		/*for (Symbol symbol : symbols)
+		{
+			sub = sub.replace(symbol.getSymbol(), "");
+
+			for (String rule : symbol.getRules())
+			{
+				test(text, comulated, rule);
+			}
+		}*/
+
+		// WUBA WUBA DUB DUB!!!
+
+	// S->lambda
+	// S->Sa
+	// S->Sb
+
+	public static boolean test(String text, String comulated, String rule)
+	{
+		if(rule.equals("lambda")){
+			if(comulated == text){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		//Caso recursivo
+		else
+		{
+			// comulated = rule + comulated;
+			// char[] symbols = capitalLetters(comulated);
+			// if (symbols.length > 0)
+			// {
+			// 	for (int i = 0; i < symbols.length; i++)
+			// 	{
+			// 		for (Symbol s : symbols)
+			// 		{
+			// 			if (s.getSymbol().equals(symbols[i]))
+			// 			{
+			// 				for (String r : symbol.getRules())
+			// 				{
+			// 					test(text, comulated, rule);
+			// 				}
+			// 			}
+			// 		}
+			// 	}
+			// }
+		}
+
+		return true;
+	}
+
 }
