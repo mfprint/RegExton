@@ -70,6 +70,7 @@ public class Main{
 				for (String rule : symbol.getRules())
 				{
 					System.out.println("\nRULE: " + rule);
+					System.out.println("Start count!!!!!: " + count);
 					if(!end)
 						test(text, rule);
 				}
@@ -82,6 +83,7 @@ public class Main{
 	{
 		count++;
 		System.out.println("\n"+count+ "_____________________\n" + comulated);
+		System.out.println("\n" + count + "_____________________\n" + comulated);
 		String sub = comulated.replace("S","");
 		if( comulated.contains("lambda_")){
 			if( text.equals(sub) ){
