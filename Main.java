@@ -70,8 +70,8 @@ public class Main{
 				for (String rule : symbol.getRules())
 				{
 					System.out.println("\nRULE: " + rule);
-					if(!end)
-						test(text, rule);
+					if(test(text, rule))
+						break;
 				}
 				break;
 			}
