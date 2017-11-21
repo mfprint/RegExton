@@ -1,0 +1,42 @@
++ RESULT OF THE TEST: THE STRING IS ACCEPTED
+
++ Definition of the Grammar:
+Symbols: S   A   B   
+Initial Symbol: S
+Alphabet: a   b   
+Testing string: bbabbbb
+Production rules:
+S --> AbB
+S --> bbS
+A --> bAb
+A --> a
+B --> AaA
+B --> bBB
+B --> b
+
+-------- branches show strings that are NOT the tested string.
+******** branches show strings that are EQUAL to the tested string.
+
++ Generated Tree on Run:
+|| S
+|----| AbB
+|--------| bAbbB
+|------------| bbAbbbB
+|----------------| bbbAbbbbB
+|----------------| bbabbbB
+|--------------------| bbabbbAaA
+|--------------------| bbabbbbBB
+|********************| bbabbbb
+|----------------| bbAbbbAaA
+|----------------| bbAbbbbBB
+|----------------| bbAbbbb
+|------------| babbB
+|------------| bAbbAaA
+|------------| bAbbbBB
+|------------| bAbbb
+|--------| abB
+|--------| AbAaA
+|--------| AbbBB
+|--------| Abb
+|----| bbS
+

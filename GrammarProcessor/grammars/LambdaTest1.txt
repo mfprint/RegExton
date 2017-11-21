@@ -4,9 +4,3 @@ S
 a
 S->aS
 S->[lmb]
-
-
-aabbaab
-
-aabbaa
-aaAbbBaaBA

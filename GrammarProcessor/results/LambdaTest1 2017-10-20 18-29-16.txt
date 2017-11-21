@@ -1,0 +1,21 @@
++ RESULT OF THE TEST: THE STRING IS ACCEPTED
+
++ Definition of the Grammar:
+Symbols: S   A   B   
+Initial Symbol: S
+Alphabet: a   b   
+Testing string: a
+Production rules:
+S --> aS
+S --> [lmb]
+
+-------- branches show strings that are NOT the tested string.
+******** branches show strings that are EQUAL to the tested string.
+
++ Generated Tree on Run:
+|| S
+|----| aS
+|--------| aaS
+|********| a[lmb]
+|----| [lmb]
+
