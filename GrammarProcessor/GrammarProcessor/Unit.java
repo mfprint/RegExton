@@ -16,29 +16,86 @@ public class Unit
 
 	public int explore()
 	{
-		if (text.length() > 0 && text.length() <= GrammarProcessor.testString.length())
+		String tempText = text.replace(GrammarProcessor.lambda, "");
+		String tempTestString = GrammarProcessor.testString.replace(GrammarProcessor.lambda, "");
+
+		if (tempText.equals(tempTestString))
 		{
-			if (text.equals(GrammarProcessor.testString))
+			containsValid = true;
+			return 1;
+		}
+
+		String cleanText = GrammarProcessor.clearFromSymbols(tempText); // bbaabbbbba
+		if (cleanText.length() <= tempTestString.length())
+		{
+			if (tempText.length() > 0)
 			{
-				containsValid = true;
-				return 1;
-			}
-			else
-			{
-				for (int i = 0; i < text.length(); i++)
+				// aabB
+				// aabb - aab = 1 - 1 = 0
+				int delta = tempTestString.length() - cleanText.length();
+				List<Symbol> symbols = GrammarProcessor.symbolsInText(tempText);
+				for (Symbol symbol : symbols)
 				{
-					if (text.charAt(i) != GrammarProcessor.testString.charAt(i))
+					if (!symbol.producesLambda())
 					{
-						if (GrammarProcessor.findSymbol(text.charAt(i) + "") != null)
-						{
-							return 2;
-						}
-						else
-						{
-							return 3;
-						}
+						delta -= 1;
 					}
 				}
+				  // AbbAaabbbBBbbBBBAaA
+				// aabB  aabb
+
+				if (delta < 0)
+				{
+					return 3;
+				}
+				else if (delta == 0)
+				{
+					return 2;
+				}
+				else
+				{
+					//System.out.println("!!!!! " + text + " TESTLEN: " + GrammarProcessor.testString.length());
+					for (int i = 0; i < tempText.length(); i++)
+					{
+						// if (i < tempTestString.length())
+						// {
+							if (tempText.charAt(i) != tempTestString.charAt(i))
+							{
+								if (GrammarProcessor.findSymbol(tempText.charAt(i) + "") != null)
+								{
+									//System.out.println("Viable: " + cleanText + ", " + text + ", " + tempTestString);
+									return 2;
+								}
+								else
+								{
+									return 3;
+								}
+							}
+						// }
+						// else
+						// {
+						// 	Symbol givesLambda = GrammarProcessor.findSymbol(tempText.charAt(i) + "");
+						// 	if (givesLambda != null)
+						// 	{
+						// 		if (!givesLambda.producesLambda())
+						// 		{
+						// 			return 3;
+						// 		}
+						// 	}
+						// 	else
+						// 	{
+						// 		return 3;
+						// 	}
+						// }
+					}
+
+					return 2;
+				}
+				// else
+				// {
+				// 	return 3;
+				// }
+
 			}
 		}
 

@@ -1,0 +1,12 @@
+S,A,B
+a,b
+S
+a
+S->aS
+S->[lmb]
+
+
+aabbaab
+
+aabbaa
+aaAbbBaaBA

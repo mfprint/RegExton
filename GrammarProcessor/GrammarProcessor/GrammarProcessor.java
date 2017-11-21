@@ -5,6 +5,8 @@ import java.io.*;
 
 public class GrammarProcessor
 {
+	public static String lambda = "[lmb]";
+
 	public static Processor processor;
 	public static Symbol initialSymbol;
 	public static List<Symbol> symbols;
@@ -74,27 +76,33 @@ public class GrammarProcessor
 
 	private static int verifyGrammer()
 	{
-		for (int i = 0; i < testString.length(); i++)
+		if (!testString.equals(GrammarProcessor.lambda))
 		{
-			if (!alphabet.contains(testString.charAt(i)))
+			for (int i = 0; i < testString.length(); i++)
 			{
-				return 1;
-			}
-		}
-
-		for (Symbol s : symbols)
-		{
-			for (String rule : s.getRules())
-			{
-				for (int i = 0; i < rule.length(); i++)
+				if (!alphabet.contains(testString.charAt(i)))
 				{
-					if (findSymbol(rule.charAt(i) + "") == null && !alphabet.contains(rule.charAt(i)))
-					{
-						return 2;
-					}
+					return 1;
 				}
 			}
 		}
+
+		// for (Symbol s : symbols)
+		// {
+		// 	for (String rule : s.getRules())
+		// 	{
+		// 		if (rule != GrammarProcessor.LAMBDA)
+		// 		{
+		// 			for (int i = 0; i < rule.length(); i++)
+		// 			{
+		// 				if (findSymbol(rule.charAt(i) + "") == null && !alphabet.contains(rule.charAt(i)))
+		// 				{
+		// 					return 2;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
 
 		return 0;
 	}
@@ -148,10 +156,35 @@ public class GrammarProcessor
 		return null;
 	}
 
+	public static List<Symbol> symbolsInText(String text)
+	{
+		List<Symbol> symbols = new ArrayList<Symbol>();
+		for (int i = 0; i < text.length(); i++)
+		{
+			Symbol x = findSymbol(text.charAt(i) + "");
+			if (x != null)
+			{
+				symbols.add(x);
+			}
+		}
+
+		return symbols;
+	}
+
+	public static String clearFromSymbols(String s)
+	{
+		String r = s;
+		for (Symbol symbol : symbols)
+		{
+			r = r.replace(symbol.getSymbol(), "");
+		}
+		r = r.replace(lambda, "");
+		return r;
+	}
 
 	public static String buildString()
 	{
-		String s = "Symbols: \n";
+		String s = "Symbols: ";
 		for (Symbol symbol : symbols)
 		{
 			s += symbol.getSymbol() + "   ";

@@ -19,6 +19,8 @@ public class Program
 
 			boolean valid = GrammarProcessor.runTest();
 			System.out.println(valid ? "THE STRING IS ACCEPTED" : "THE STRING IS NOT ACCEPTED");
+			System.out.print("Press [enter] to continue...");
+			scanner.nextLine();
 
 			if (toggleDisplayTreeSelection())
 			{

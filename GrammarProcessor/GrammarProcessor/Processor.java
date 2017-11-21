@@ -25,15 +25,17 @@ public class Processor
 		// System.out.println(unit + " ====== " + result);
 		if (result == 0) // Text is not viable
 		{
-
+			//System.out.println("0");
 		}
 		else if (result == 1) // Text equals TestString
 		{
+			//System.out.println("1");
 			// System.out.println("THE STRING IS ACCEPTED");
 			found = true;
 		}
 		else if (result == 2) // Text contains Symbols
 		{
+			//System.out.println("2");
 			for (int i = 0; i < unit.getText().length(); i++)
 			{
 				Symbol temp = GrammarProcessor.findSymbol(unit.getText().charAt(i) + "");
@@ -65,11 +67,13 @@ public class Processor
 
 			for (Unit child : unit.getUnits())
 			{
-				expand(child);
+				if (!found)
+					expand(child);
 			}
 		}
 		else if (result == 3) // Text is not viable because string doesn't start with TestingString
 		{
+			//System.out.println("3");
 			// no expansion for this unit
 		}
 	}

@@ -13,6 +13,11 @@ public class Symbol
 		rules = new ArrayList<String>();
 	}
 
+	public boolean producesLambda()
+	{
+		return rules.contains(GrammarProcessor.lambda);
+	}
+
 	public String getSymbol()
 	{
 		return symbol;

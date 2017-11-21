@@ -1,8 +1,0 @@
-S,A,B
-a,b
-S
-ababa
-S->ABB
-A->abDS
-A->a
-B->bA
