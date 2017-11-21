@@ -135,3 +135,28 @@ button {
 	margin: 0 auto;
 	margin-top: 50px;
 }
+
+#result-container {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 3em;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#result-overall {
+	display: none;
+}
+
+#result-box {
+	margin-left: 30px;
+	display: inline-flex;
+	align-items: center;
+	background-color: white;
+	color: black;
+	border-radius: 10px;
+	padding: 20px;
+	height: 50px;
+}

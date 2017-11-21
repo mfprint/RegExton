@@ -6,6 +6,9 @@ var operators = ["^", "*", "/", "+", "-"];
 var precedence = ["+-", "*/", "^"];
 var leftAssociativeOp = ["*", "/", "+", "-"];
 
+var calculatorStack = [];
+var calculatorInput = "";
+
 $(document).ready(function() {
 	$("#intro-container").css("height", $(window).outerHeight());
 	$("#intro-container").css("width", $(window).outerWidth());
@@ -14,10 +17,19 @@ $(document).ready(function() {
 		output = "";
 		input = $("#input").val().split(" ").join("");
 		stack = [];
-		$("#output-display, #stack-display").text("");
-		$("#input-display").text(input);
-		$("#next-btn, #complete-btn").removeClass("completed");
-		$("#intro-container").hide("slide", { direction: "left" }, 500);
+
+		if (input.split("(").length == input.split(")").length)
+		{
+			$("#output-display, #stack-display").text("");
+			$("#input-display").text(input);
+			$("#result-overall").hide();
+			$("#next-btn, #complete-btn").removeClass("completed");
+			$("#intro-container").hide("slide", { direction: "left" }, 500);
+		}
+		else
+		{
+			alert("Syntax Error");
+		}
 	});
 
 	$("#return-btn").on("click", function() {
@@ -38,12 +50,8 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#input").on("input", function() {
-		var i = $("#input").val().charAt($("#input").val().length - 1) + "";
-		if (isNaN(i) && !operators.includes(i))
-		{
-			$("#input").val($("#input").val().substring(0, $("#input").val().length - 1));
-		}
+	$("#evaluate-btn").on("click", function() {
+		calculate();
 	});
 });
 
@@ -130,4 +138,58 @@ function ShauntingYardAlgorithm()
 	});
 	$("#stack-display").text(stackString);
 	
+}
+
+function calculate()
+{
+	calculatorStack = [];
+	calculatorInput = $("#output-display").text();
+
+	for (var i = 0; i < calculatorInput.length; i++)
+	{
+		var token = calculatorInput.charAt(i);
+		if (!isNaN(token))
+		{
+			calculatorStack.push(token);
+		}
+		else
+		{
+			switch (token)
+			{
+				case "+":
+					var n2 = parseFloat(calculatorStack.pop());
+					var n1 = parseFloat(calculatorStack.pop());
+					//alert("+" + n2 + ", " + n1);
+					calculatorStack.push(n1 + n2);
+					break;
+				case "-":
+					var n2 = parseFloat(calculatorStack.pop());
+					var n1 = parseFloat(calculatorStack.pop());
+					//alert("-" + n2 + ", " + n1);
+					calculatorStack.push(n1 - n2);
+					break;
+				case "*":
+					var n2 = parseFloat(calculatorStack.pop());
+					var n1 = parseFloat(calculatorStack.pop());
+					//alert("-" + n2 + ", " + n1);
+					calculatorStack.push(n1 * n2);
+					break;
+				case "/":
+					var n2 = parseFloat(calculatorStack.pop());
+					var n1 = parseFloat(calculatorStack.pop());
+					calculatorStack.push(n1 / n2);
+					//alert("/" + n2 + ", " + n1);
+					break;
+				case "^":
+					var power = parseFloat(calculatorStack.pop());
+					var base = parseFloat(calculatorStack.pop());
+					//alert("^" + power + ", " + base);
+					calculatorStack.push(Math.pow(base, power));
+					break;
+			}
+		}
+	}
+
+	$("#result-box").text(calculatorStack.pop());
+	$("#result-overall").show("clip", 500);
 }

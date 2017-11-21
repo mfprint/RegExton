@@ -1,4 +1,0 @@
-aabb
-S->lambda_
-S->Sa
-S->Sb
