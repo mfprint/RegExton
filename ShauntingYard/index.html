@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shaunting-Yard Algorithm</title>
+	<link rel="stylesheet" type="text/css" href="index.css" />
+	<script type="text/javascript" src="libs/jquery.min.js"></script>
+	<script type="text/javascript" src="libs/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+	<div id="intro-container">
+		<div class="center">
+			<h1>Shaunting Yard Algorithm</h1>
+			<h2>- A RPN CALCULATOR -</h2>
+			<input type="text" id="input" autofocus="true" />
+			<button id="start-btn">START ALGORITHM</button>
+			<div style="margin-top: 50px; font-size: 18px;">
+				Luis Angel Lucatero Villanueva | A012...507<br/>
+				Martín Figueroa Padilla | A01651073
+			</div>
+		</div>
+	</div>
+	<div id="running-container">
+		<div class="buttons-container">
+			<button id="return-btn">RETURN</button>
+			<button id="next-btn">NEXT STEP</button>
+			<button id="complete-btn">RUN COMPLETE ALGORITHM</button>
+			<button id="evaulate-btn">EVALUATE ENTRY</button>
+		</div>
+		<div id="display">
+			<div class="container">
+				<div class="display-item">
+					<p>INPUT</p>
+					<div id="input-display"></div>
+				</div>
+				<div class="display-item">
+					<p>OUTPUT</p>
+					<div id="output-display"></div>
+				</div>
+			</div>
+			<div class="display-item" id="stack-display-item">
+				<p>OPERATORS STACK</p>
+				<div id="stack-display"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

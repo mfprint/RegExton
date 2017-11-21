@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
+}
+
+body {
+	background-color: #24388B;
+}
+
+#intro-container {
+	background-color: #8B2424;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+}
+
+h1 {
+	font-family: "Pacifico", cursive;
+	font-size: 4em;
+	text-align: center;
+	margin-top: -10px;
+}
+
+input {
+	font-size: 3em;
+	width: 800px;
+	text-align: center;
+	padding: 20px;
+	box-sizing: border-box;
+	display: block;
+	margin: 50px auto;
+	outline: none;
+	border: none;
+}
+
+button {
+	font-size: 2em;
+	border: none;
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+	padding: 10px 20px;
+	outline: none;
+}
+
+#return-btn {
+	background-color: #000 !important;
+	color: white !important;
+}
+
+#running-container {
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+#running-container button {
+	background-color: white;
+	color: black;
+	font-size: 1.5em;
+	margin-bottom: 30px;
+}
+
+.buttons-container {
+	display: flex;
+}
+
+.buttons-container button {
+	flex: 1;
+	margin: 0 30px;
+	transition-duration: 0.3s;
+}
+
+.buttons-container button.completed {
+	background-color: #C1C1C1 !important;
+}
+
+.buttons-container button:first-child {
+	margin-left: 0;
+}
+
+.buttons-container button:last-child {
+	margin-right: 0;
+}
+
+#display {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.container {
+	display: flex;
+}
+
+.container .display-item {
+	flex: 1;
+}
+
+.container .display-item:first-child {
+	margin-right: 100px;
+}
+
+.display-item {
+	margin-bottom: 30px;
+	font-size: 2em;
+}
+
+.display-item p {
+	color: white;
+	margin-bottom: 10px;
+}
+
+.display-item div {
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border-radius: 10px;
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	height: 100px;
+}
+
+#stack-display-item {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+}
