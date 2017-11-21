@@ -87,23 +87,6 @@ public class GrammarProcessor
 			}
 		}
 
-		// for (Symbol s : symbols)
-		// {
-		// 	for (String rule : s.getRules())
-		// 	{
-		// 		if (rule != GrammarProcessor.LAMBDA)
-		// 		{
-		// 			for (int i = 0; i < rule.length(); i++)
-		// 			{
-		// 				if (findSymbol(rule.charAt(i) + "") == null && !alphabet.contains(rule.charAt(i)))
-		// 				{
-		// 					return 2;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
-
 		return 0;
 	}
 

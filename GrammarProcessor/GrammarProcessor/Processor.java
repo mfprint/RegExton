@@ -22,20 +22,17 @@ public class Processor
 	private void expand(Unit unit)
 	{
 		int result = unit.explore();
-		// System.out.println(unit + " ====== " + result);
-		if (result == 0) // Text is not viable
+
+		if (result == 0 || result == 3) // Text is not viable
 		{
-			//System.out.println("0");
+			// no expansion for this unit
 		}
 		else if (result == 1) // Text equals TestString
 		{
-			//System.out.println("1");
-			// System.out.println("THE STRING IS ACCEPTED");
 			found = true;
 		}
 		else if (result == 2) // Text contains Symbols
 		{
-			//System.out.println("2");
 			for (int i = 0; i < unit.getText().length(); i++)
 			{
 				Symbol temp = GrammarProcessor.findSymbol(unit.getText().charAt(i) + "");
@@ -43,38 +40,36 @@ public class Processor
 				{
 					for (String rule : temp.getRules())
 					{
-						String text = "";
-						if (unit.getText().length() > 1)
+						if (!found) // !!!!!!!
 						{
-							if (i > 0)
+							String text = "";
+							if (unit.getText().length() > 1)
 							{
-								text += unit.getText().substring(0, i);
-							}
+								if (i > 0)
+								{
+									text += unit.getText().substring(0, i);
+								}
 
-							text += rule + unit.getText().substring(i + 1, unit.getText().length());
+								text += rule + unit.getText().substring(i + 1, unit.getText().length());
+							}
+							else
+							{
+								text = rule;
+							}
+							
+							Unit u = new Unit(text);
+							unit.getUnits().add(u);
+							expand(u); // !!!!!!
 						}
-						else
-						{
-							text = rule;
-						}
-						
-						// System.out.println("UNIT RESULT: " + text);
-						Unit u = new Unit(text);
-						unit.getUnits().add(u);
 					}
 				}
 			}
 
-			for (Unit child : unit.getUnits())
-			{
-				if (!found)
-					expand(child);
-			}
-		}
-		else if (result == 3) // Text is not viable because string doesn't start with TestingString
-		{
-			//System.out.println("3");
-			// no expansion for this unit
+			// for (Unit child : unit.getUnits())
+			// {
+			// 	if (!found)
+			// 		expand(child);
+			// }
 		}
 	}
 

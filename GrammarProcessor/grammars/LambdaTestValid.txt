@@ -1,6 +1,7 @@
 S,A,B
 a,b
 S
-a
+aaaaaaab
 S->aS
+S->b
 S->[lmb]

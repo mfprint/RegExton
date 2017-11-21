@@ -25,13 +25,13 @@ public class Unit
 			return 1;
 		}
 
-		String cleanText = GrammarProcessor.clearFromSymbols(tempText); // bbaabbbbba
+		String cleanText = GrammarProcessor.clearFromSymbols(tempText);
 		if (cleanText.length() <= tempTestString.length())
 		{
 			if (tempText.length() > 0)
 			{
-				// aabB
-				// aabb - aab = 1 - 1 = 0
+				// 2 symbols, text = 5
+				// 5 - 3 = 2 - 1 - 1 = 0
 				int delta = tempTestString.length() - cleanText.length();
 				List<Symbol> symbols = GrammarProcessor.symbolsInText(tempText);
 				for (Symbol symbol : symbols)
@@ -41,8 +41,6 @@ public class Unit
 						delta -= 1;
 					}
 				}
-				  // AbbAaabbbBBbbBBBAaA
-				// aabB  aabb
 
 				if (delta < 0)
 				{
@@ -54,16 +52,12 @@ public class Unit
 				}
 				else
 				{
-					//System.out.println("!!!!! " + text + " TESTLEN: " + GrammarProcessor.testString.length());
 					for (int i = 0; i < tempText.length(); i++)
 					{
-						// if (i < tempTestString.length())
-						// {
 							if (tempText.charAt(i) != tempTestString.charAt(i))
 							{
 								if (GrammarProcessor.findSymbol(tempText.charAt(i) + "") != null)
 								{
-									//System.out.println("Viable: " + cleanText + ", " + text + ", " + tempTestString);
 									return 2;
 								}
 								else
@@ -71,31 +65,10 @@ public class Unit
 									return 3;
 								}
 							}
-						// }
-						// else
-						// {
-						// 	Symbol givesLambda = GrammarProcessor.findSymbol(tempText.charAt(i) + "");
-						// 	if (givesLambda != null)
-						// 	{
-						// 		if (!givesLambda.producesLambda())
-						// 		{
-						// 			return 3;
-						// 		}
-						// 	}
-						// 	else
-						// 	{
-						// 		return 3;
-						// 	}
-						// }
 					}
 
 					return 2;
 				}
-				// else
-				// {
-				// 	return 3;
-				// }
-
 			}
 		}
 
