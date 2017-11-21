@@ -51,6 +51,11 @@ $(document).ready(function() {
 	});
 
 	$("#evaluate-btn").on("click", function() {
+		while (input.length > 0)
+		{
+			ShauntingYardAlgorithm();
+		}
+		
 		calculate();
 	});
 });
